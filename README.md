@@ -6,7 +6,7 @@ Learn how to build audio-reactive visual experiences in Three.js, featuring sync
 
 [Article on Codrops](https://tympanus.net/codrops/?p=74700)
 
-[Demo](https://tympanus.net/Tutorials/AudioReactiveParticles/)
+[Demo](https://tympanus.net/Tutorials/InteractiveParticlesMusicVisualizer/)
 
 ## Installation
 
