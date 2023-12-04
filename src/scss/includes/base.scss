@@ -1,0 +1,227 @@
+@import url('https://use.typekit.net/rsf5rhz.css');
+
+html {
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+  &.scroll {
+    overflow: visible;
+  }
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 16px;
+  --color-text: #fffbf5;
+  --color-bg: #000000;
+  --color-link: #fffbf5;
+  --color-link-hover: #fffbf5;
+}
+
+body {
+  margin: 0;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  font-family: 'degular', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+/* Page Loader */
+.js .loading::before,
+.js .loading::after {
+  content: '';
+  position: fixed;
+  z-index: 1000;
+}
+
+.js .loading::before {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-bg);
+}
+
+.js .loading::after {
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  border-radius: 50%;
+  opacity: 0.4;
+  background: var(--color-link);
+  animation: loaderAnim 0.7s linear infinite alternate forwards;
+}
+
+@keyframes loaderAnim {
+  to {
+    opacity: 1;
+    transform: scale3d(0.5, 0.5, 1);
+  }
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-link);
+  outline: none;
+  cursor: pointer;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+  outline: none;
+}
+
+/* Better focus styles from https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible */
+a:focus {
+  /* Provide a fallback style for browsers
+	 that don't support :focus-visible */
+  outline: none;
+  background: lightgrey;
+}
+
+a:focus:not(:focus-visible) {
+  /* Remove the focus indicator on mouse-focus for browsers
+	 that do support :focus-visible */
+  background: transparent;
+}
+
+a:focus-visible {
+  /* Draw a very noticeable focus style for
+	 keyboard-focus on browsers that do support
+	 :focus-visible */
+  outline: 2px solid red;
+  background: transparent;
+}
+
+.unbutton {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.unbutton:focus {
+  outline: none;
+}
+
+.frame {
+  font-family: 'area-normal', sans-serif;
+  font-size: 0.75rem;
+  z-index: 1000;
+  position: relative;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-areas: 'title' 'prev' 'back' 'sponsor' 'demos';
+  grid-gap: 0.5rem;
+  justify-items: start;
+  align-self: start;
+  justify-self: start;
+  pointer-events: none;
+}
+
+body #cdawrap {
+  justify-self: start;
+}
+
+.frame a {
+  pointer-events: auto;
+  text-decoration: underline;
+}
+
+.frame__title {
+  grid-area: title;
+  font-size: inherit;
+  margin: 0;
+  font-weight: inherit;
+}
+
+.frame__back {
+  grid-area: back;
+}
+
+.frame__prev {
+  grid-area: prev;
+}
+
+.frame__demos {
+  grid-area: demos;
+  display: flex;
+  gap: 1rem;
+}
+
+.frame__demo--current {
+  opacity: 0.5;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.user_interaction {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+
+  svg {
+    width: 48px;
+  }
+}
+
+.dg.ac {
+  display: none;
+}
+
+@media screen and (min-width: 53em) {
+  .frame {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    grid-template-columns: auto 1fr auto auto;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas: 'title back sponsor sponsor' 'demos demos ... ...' '... ... ... prev';
+    justify-content: start;
+    justify-items: start;
+    gap: 1.5rem;
+  }
+
+  .frame__prev {
+    align-self: end;
+    justify-self: end;
+  }
+
+  .dg.ac {
+    display: block;
+  }
+}
