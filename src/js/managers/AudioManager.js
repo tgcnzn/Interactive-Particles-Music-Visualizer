@@ -9,8 +9,8 @@ export default class AudioManager {
       high: 0,
     }
     this.isPlaying = false
-    this.lowFrequency = 10 //20Hz to 250Hz
-    this.midFrequency = 150 //250Hz to 2000Hz
+    this.lowFrequency = 10 //10Hz to 250Hz
+    this.midFrequency = 150 //150Hz to 2000Hz
     this.highFrequency = 9000 //2000Hz to 20000Hz
     this.smoothedLowFrequency = 0
     this.audioContext = null
@@ -69,11 +69,8 @@ export default class AudioManager {
     const midAvg = this.normalizeValue(this.calculateAverage(this.frequencyArray, midFreqRangeStart, midFreqRangeEnd))
     const highAvg = this.normalizeValue(this.calculateAverage(this.frequencyArray, highFreqRangeStart, highFreqRangeEnd))
 
-    const smoothingFactor = 0.5 // Adjust this value as needed, between 0 and 1
-    this.smoothedLowFrequency += smoothingFactor * (lowAvg - this.smoothedLowFrequency)
-
     this.frequencyData = {
-      low: this.smoothedLowFrequency,
+      low: lowAvg,
       mid: midAvg,
       high: highAvg,
     }

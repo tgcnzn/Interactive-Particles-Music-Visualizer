@@ -72,6 +72,12 @@ export default class ReactiveParticles extends THREE.Object3D {
       z: Math.random() * Math.PI * 2,
       ease: 'none', // No easing for a linear animation
     })
+
+    gsap.to(this.position, {
+      duration: 0.6,
+      z: THREE.MathUtils.randInt(9, 11), // Random depth positioning within a range
+      ease: 'elastic.out(0.8)', // Elastic ease-out for a bouncy effect
+    })
   }
 
   createCylinderMesh() {
@@ -88,20 +94,40 @@ export default class ReactiveParticles extends THREE.Object3D {
 
     // Create a points mesh using the cylinder geometry and shader material
     this.pointsMesh = new THREE.Points(this.geometry, this.material)
-    this.pointsMesh.rotateX(Math.PI / 2) // Rotate the mesh for better orientation
+    this.pointsMesh.rotation.set(Math.PI / 2, 0, 0) // Rotate the mesh for better orientation
     this.holderObjects.add(this.pointsMesh)
+
+    let rotY = 0
+    let posZ = THREE.MathUtils.randInt(9, 11)
+
+    if (Math.random() < 0.2) {
+      rotY = Math.PI / 2
+      posZ = THREE.MathUtils.randInt(10, 11.5)
+    }
+
+    gsap.to(this.holderObjects.rotation, {
+      duration: 0.2,
+      y: rotY,
+      ease: 'elastic.out(0.2)',
+    })
+
+    gsap.to(this.position, {
+      duration: 0.6,
+      z: posZ,
+      ease: 'elastic.out(0.8)',
+    })
   }
 
   onBPMBeat() {
     // Calculate a reduced duration based on the BPM (beats per minute) duration
-    const duration = (App.bpmManager.getBPMDuration() / 1000) * 0.5
+    const duration = App.bpmManager.getBPMDuration() / 1000
 
     if (App.audioManager.isPlaying) {
       // Randomly determine whether to rotate the holder object
       if (Math.random() < 0.3 && this.properties.autoRotate) {
         gsap.to(this.holderObjects.rotation, {
           duration: Math.random() < 0.8 ? 15 : duration, // Either a longer or BPM-synced duration
-          y: Math.random() * Math.PI * 2,
+          // y: Math.random() * Math.PI * 2,
           z: Math.random() * Math.PI,
           ease: 'elastic.out(0.2)',
         })
@@ -124,11 +150,6 @@ export default class ReactiveParticles extends THREE.Object3D {
       }
 
       // Animate the position of the mesh for an elastic movement effect
-      gsap.to(this.position, {
-        duration: 0.6,
-        z: THREE.MathUtils.randInt(9, 11), // Random depth positioning within a range
-        ease: 'elastic.out(0.8)', // Elastic ease-out for a bouncy effect
-      })
 
       // Animate the frequency uniform in the material, syncing with BPM if available
       gsap.to(this.material.uniforms.frequency, {
@@ -154,7 +175,7 @@ export default class ReactiveParticles extends THREE.Object3D {
       this.material.uniforms.amplitude.value = 0.8 + THREE.MathUtils.mapLinear(App.audioManager.frequencyData.high, 0, 0.6, -0.1, 0.2)
 
       // Update offset gain based on the low frequency data for subtle effect changes
-      this.material.uniforms.offsetGain.value = App.audioManager.frequencyData.low * 0.1
+      this.material.uniforms.offsetGain.value = App.audioManager.frequencyData.mid * 0.6
 
       // Map low frequency data to a range and use it to increment the time uniform
       const t = THREE.MathUtils.mapLinear(App.audioManager.frequencyData.low, 0.6, 1, 0.2, 0.5)

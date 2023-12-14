@@ -6,9 +6,6 @@ import AudioManager from './managers/AudioManager'
 
 export default class App {
   //THREE objects
-  static camera = null
-  static scene = null
-  static renderer = null
   static holder = null
   static gui = null
 
@@ -17,35 +14,33 @@ export default class App {
   static bpmManager = null
 
   constructor() {
-    this.width = 0
-    this.height = 0
-
     this.onClickBinder = () => this.init()
-    document.addEventListener('pointerdown', this.onClickBinder)
+    document.addEventListener('click', this.onClickBinder)
   }
 
   init() {
-    document.removeEventListener('pointerdown', this.onClickBinder)
-    App.renderer = new THREE.WebGLRenderer({
+    document.removeEventListener('click', this.onClickBinder)
+
+    this.renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: true,
     })
 
-    App.renderer.setClearColor(0x000000, 0)
-    App.renderer.setSize(window.innerWidth, window.innerHeight)
-    App.renderer.autoClear = false
-    document.querySelector('.content').appendChild(App.renderer.domElement)
+    this.renderer.setClearColor(0x000000, 0)
+    this.renderer.setSize(window.innerWidth, window.innerHeight)
+    this.renderer.autoClear = false
+    document.querySelector('.content').appendChild(this.renderer.domElement)
 
-    App.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 10000)
-    App.camera.position.z = 12
-    App.camera.frustumCulled = false
+    this.camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 10000)
+    this.camera.position.z = 12
+    this.camera.frustumCulled = false
 
-    App.scene = new THREE.Scene()
-    App.scene.add(App.camera)
+    this.scene = new THREE.Scene()
+    this.scene.add(this.camera)
 
     App.holder = new THREE.Object3D()
     App.holder.name = 'holder'
-    App.scene.add(App.holder)
+    this.scene.add(App.holder)
     App.holder.sortObjects = false
 
     App.gui = new dat.GUI()
@@ -57,8 +52,6 @@ export default class App {
   }
 
   async createManagers() {
-    this.managers = []
-
     App.audioManager = new AudioManager()
     await App.audioManager.loadAudioBuffer()
 
@@ -72,23 +65,19 @@ export default class App {
 
     App.audioManager.play()
 
-    this.createEntities()
-
-    this.update()
-  }
-
-  createEntities() {
     this.particles = new ReativeParticles()
     this.particles.init()
+
+    this.update()
   }
 
   resize() {
     this.width = window.innerWidth
     this.height = window.innerHeight
 
-    App.camera.aspect = this.width / this.height
-    App.camera.updateProjectionMatrix()
-    App.renderer.setSize(this.width, this.height)
+    this.camera.aspect = this.width / this.height
+    this.camera.updateProjectionMatrix()
+    this.renderer.setSize(this.width, this.height)
   }
 
   update() {
@@ -97,6 +86,6 @@ export default class App {
     this.particles?.update()
     App.audioManager.update()
 
-    App.renderer.render(App.scene, App.camera)
+    this.renderer.render(this.scene, this.camera)
   }
 }
