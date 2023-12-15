@@ -1,6 +1,6 @@
 # Interactive Particles Music Visualizer with Three.js
 
-Learn how to build audio-reactive visual experiences in Three.js, featuring synchronized sound and dynamic 3D visuals, inspired by ARKx's work for Coala Music's website.
+Learn how to create an interactive music visualizer in Three.js, inspired by ARKx's work for Coala Music's website.
 
 ![Audio Reactive Particles](https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2023/12/feature_particles-visualizer_high.gif)
 
