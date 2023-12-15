@@ -2,7 +2,7 @@
 
 Learn how to build audio-reactive visual experiences in Three.js, featuring synchronized sound and dynamic 3D visuals, inspired by ARKx's work for Coala Music's website.
 
-![Audio Reactive Particles](https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2023/12/feature_particles-visualizer_high.gif?x27001)
+![Audio Reactive Particles](https://codrops-1f606.kxcdn.com/codrops/wp-content/uploads/2023/12/feature_particles-visualizer_high.gif)
 
 [Article on Codrops](https://tympanus.net/codrops/?p=74700)
 
@@ -34,7 +34,9 @@ npm run build
 - [FBO Particles](https://www.youtube.com/watch?v=oLH00MXTqNg) by Yuri Artiukh
 - [Threejs](https://threejs.org/)
 - [GSAP](https://gsap.com/)
+- [WebGL Noise](https://github.com/ashima/webgl-noise)
 - [web-audio-beat-detector](https://github.com/chrisguttandin/web-audio-beat-detector)
+
 - Music by Kendrick Lamar - Money Trees from [Spotify API](https://developer.spotify.com/documentation/web-api/reference/get-track)
 
 ## Misc

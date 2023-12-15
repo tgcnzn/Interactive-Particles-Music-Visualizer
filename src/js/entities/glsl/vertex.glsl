@@ -1,3 +1,4 @@
+
 varying float vDistance;
 
 uniform float time;
@@ -7,6 +8,7 @@ uniform float offsetGain;
 uniform float amplitude;
 uniform float frequency;
 uniform float maxDistance;
+
 
 vec3 mod289(vec3 x){
   return x-floor(x*(1./289.))*289.;
@@ -20,7 +22,12 @@ vec3 permute(vec3 x){
   return mod289(((x*34.)+1.)*x);
 }
 
+//      Author : Ian McEwan, Ashima Arts.
+//      https://github.com/ashima/webgl-noise
+//      https://github.com/stegu/webgl-noise
+//
 float noise(vec2 v) {
+  
   const vec4 C=vec4(.211324865405187,.366025403784439,-.577350269189626,.024390243902439);// 1.0 / 41.0
   // First corner
   vec2 i=floor(v+dot(v,C.yy));
