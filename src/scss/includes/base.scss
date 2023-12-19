@@ -130,7 +130,7 @@ a:focus-visible {
   padding: 1.5rem;
   display: grid;
   grid-template-columns: 100%;
-  grid-template-areas: 'title' 'prev' 'back' 'sponsor' 'demos';
+  grid-template-areas: 'title' 'prev' 'back' 'sponsor';
   grid-gap: 0.5rem;
   justify-items: start;
   align-self: start;
@@ -160,16 +160,6 @@ body #cdawrap {
 
 .frame__prev {
   grid-area: prev;
-}
-
-.frame__demos {
-  grid-area: demos;
-  display: flex;
-  gap: 1rem;
-}
-
-.frame__demo--current {
-  opacity: 0.5;
 }
 
 .content {
@@ -210,7 +200,7 @@ body #cdawrap {
     width: 100%;
     grid-template-columns: auto 1fr auto auto;
     grid-template-rows: auto auto 1fr;
-    grid-template-areas: 'title back sponsor sponsor' 'demos demos ... ...' '... ... ... prev';
+    grid-template-areas: 'title back ... ...' '... ... ... ...' 'sponsor sponsor ... prev';
     justify-content: start;
     justify-items: start;
     gap: 1.5rem;
