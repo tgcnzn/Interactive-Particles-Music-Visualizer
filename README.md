@@ -6,7 +6,7 @@ Learn how to create a music visualizer in Three.js, inspired by ARKx's work for 
 
 [Article on Codrops](https://tympanus.net/codrops/?p=74700)
 
-[Demo](https://tympanus.net/Tutorials/InteractiveParticlesMusicVisualizer/)
+[Demo](https://tympanus.net/Tutorials/ParticlesMusicVisualizer/)
 
 ## Installation
 
