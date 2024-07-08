@@ -4,7 +4,7 @@ import * as path from 'path'
 
 export default defineConfig({
   root: '',
-  base: '/',
+  base: '/Interactive-Particles-Music-Visualizer/',
   build: {
     outDir: 'dist',
     cssCodeSplit: true,
